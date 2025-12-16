@@ -28,7 +28,7 @@ export default function CourtListScreen({ navigation }) {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('Court', { court: item })}
+            onPress={() => navigation.navigate('CourtDetail', { court: item })}
             style={{ padding: 12, borderBottomWidth: 1 }}
           >
             <Text>{item.name}</Text>
