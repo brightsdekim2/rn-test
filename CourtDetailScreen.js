@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList } from 'react-native';
 
-export default function CourtDetailScreen({ route, reviews, setReviews }) {
+export default function CourtDetailScreen({ route, reviewsByCourt, setReviewsByCourt }) {
   const { court } = route.params;
   const [text, setText] = useState('');
+
+  const reviews = reviewsByCourt[court.id] || [];
 
   const addReview = () => {
     if (!text) return;
 
-    setReviews(prev => [...prev, { courtName: court.name, text }]);
+    setReviewsByCourt(prev => ({
+      ...prev,
+      [court.id]: [...(prev[court.id] || []), text]
+    }));
+
     setText('');
   };
 
@@ -27,11 +33,9 @@ export default function CourtDetailScreen({ route, reviews, setReviews }) {
 
       <FlatList
         data={reviews}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, i) => i.toString()}
         renderItem={({ item }) => (
-          <Text style={{ marginTop: 8 }}>
-            {item.courtName}: {item.text}
-          </Text>
+          <Text style={{ marginTop: 8 }}>{item}</Text>
         )}
       />
     </View>
