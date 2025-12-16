@@ -7,7 +7,7 @@ import CourtDetailScreen from './CourtDetailScreen';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [reviews, setReviews] = useState([]);
+  const [reviewsByCourt, setReviewsByCourt] = useState({});
 
   return (
     <NavigationContainer>
@@ -17,8 +17,8 @@ export default function App() {
           {props => (
             <CourtDetailScreen
               {...props}
-              reviews={reviews}
-              setReviews={setReviews}
+              reviewsByCourt={reviewsByCourt}
+              setReviewsByCourt={setReviewsByCourt}
             />
           )}
         </Stack.Screen>
